@@ -1,0 +1,165 @@
+/* HERO SECTION <> HERO SECTION <> HERO SECTION <> HERO SECTION <> HERO SECTION <> HERO SECTION <> HERO SECTION */
+.section-one { height: 100vh; }
+.hero { display: flex; flex-direction: column; margin: 20vh 32px 0 32px; }
+.hero span{ font-family: monospace; font-weight: bold; }
+
+.hero .one {
+	color: rgba(188 108 37/.4);
+	font-size: 56px;
+	margin-bottom: 24px;
+	transition: 0.6s;
+	-webkit-text-stroke: 1px rgba(0 0 0/.8);
+}
+
+.hero .one:hover { color: rgba(188 108 37/1); transition: 0.3s; -webkit-text-stroke: 1px rgba(188 108 37/1); }
+.hero .two { color: #606c38; font-size: 32px; width: 50%; }
+.villain { display: flex; margin: 0 32px; }
+
+.villain button {
+	background-color: #283618;
+	border: none;
+	border-radius: 5px;
+	color: #fefae0;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: bold;
+	height: 50%;
+	margin-top: 10vh;
+	padding: 8px 16px;
+	transition: .2s;
+	width: 30%;
+}
+
+.villain button:hover { background-color: #bc6c25; }
+
+.villain .duck {
+	background-image: url("/static/assets/ducky-nobg.gif");
+	/* https://dribbble.com/shots/3590356-Ducky-AEP-project-file */
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 50vh;
+	width: 100%;
+}
+
+/* FEATURE SECTION <> FEATURE SECTION <> FEATURE SECTION <> FEATURE SECTION <> FEATURE SECTION <> FEATURE SECTION */
+.section-two {
+	background-color: #283618;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	padding: 10vh 32px;
+	text-align: center;
+}
+
+.section-two .features {
+	align-items: center;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 8px 10px 0 rgba(0 0 0/.75);
+	color: #bc6c25;
+	display: flex;
+	flex-direction: column;
+	margin: 0 32px;
+	max-width: 30vw;
+	transition: .2s;
+}
+
+.features i {
+	align-items: center;
+	background-color: #283618;
+	color: #fefae0;
+	display: flex;
+	height: 144px;
+	justify-content: center;
+	margin: 24px 0;
+	width: 100%;
+}
+
+.features span { font-size: 32px; font-weight: bold; }
+.features p { font-size: 16px; margin: 24px 16px; width: 24vw; }
+
+.features:hover {
+	background-color: #283618;
+	box-shadow: 0 4px 2px 2px rgba(0 0 0/.75);
+	color: #fefae0;
+	transform: scale(.97);
+}
+
+/* CONTACT SECTION <> CONTACT SECTION <> CONTACT SECTION <> CONTACT SECTION <> CONTACT SECTION <> CONTACT SECTION */
+.section-three { display: flex; flex-direction: row; justify-content: space-between; margin: 10vh 32px; }
+
+.contacts-info { color: rgba(0 0 0/.9); display: flex; flex-direction: column; justify-content: center; max-width: 40vw; }
+.contacts-info .title { font-size: 32px; font-weight: bold; }
+.contacts-info .address { font-size: 24px; margin: 16px 0 8px 0; }
+.contacts-info .text, .contacts-info .icons { font-size: 16px; margin: 8px 0; }
+
+.contacts-form {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 8px 10px 0 rgba(0 0 0/.75);
+	display: flex;
+	flex-direction: column;
+	min-width: 60vw;
+	padding: 32px 64px;
+	transition: .2s;
+}
+
+.contacts-form:hover { box-shadow: 0 4px 2px 2px rgba(0 0 0/.75); }
+.contacts-form form { display: flex; flex-direction: column; align-items: center; }
+.contacts-form span { color: #283618; font-size: 24px; font-weight: bold; margin-bottom: 16px; text-align: center; }
+.contacts-form .half { display: flex; flex-direction: row; transition: .2s; width: 80%; }
+.contacts-form .half:hover { width: 100%; }
+
+.contacts-form input {
+	border: none;
+	border-bottom: 2px solid rgba(0 0 0/.5);
+	border-radius: 5px;
+	font-size: 16px;
+	margin: 8px 0 24px 0;
+	padding: 8px 16px;
+	text-align: center;
+	transition: width .2s ease-in-out;
+	width: 80%;
+}
+
+.contacts-form input:hover { width: 100%; }
+.contacts-form input:focus { background-color: rgba(0 0 0/.1); width: 100%; }
+.contacts-form input::placeholder { font-size: 16px; text-align: center; }
+
+.contacts-form button {
+	background-color: #283618;
+	border: none;
+	border-radius: 5px;
+	color: #fefae0;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 16px;
+	padding: 8px 16px;
+	transition: .2s;
+	width: 100%;
+}
+
+.contacts-form button:hover { background-color: #bc6c25; }
+
+/* RESPONSIVE SCREEN <> RESPONSIVE SCREEN <> RESPONSIVE SCREEN <> RESPONSIVE SCREEN <> RESPONSIVE SCREEN */
+@media (max-width: 1024px) {
+	.hero .one { font-size: 32px; }
+	.hero .two { font-size: 16px; width: 100%; }
+	.section-two { align-items: center; flex-direction: column; }
+	.section-two .features { flex-direction: row-reverse; justify-content: space-between; margin: 16px 0; max-width: 100%; }
+
+	.features i { border-radius: 50%; height: 144px; margin: 16px; width: 144px; }
+	.features span { font-size: 16px; margin: 0 8px; text-orientation: sideways; writing-mode: vertical-rl; }
+	.features p { margin: 16px; width: 50%; }
+
+	.contacts-info { min-width: 40vw; }
+	.contacts-info .title { font-size: 20px; }
+	.contacts-info .address { font-size: 16px; }
+	.contacts-info .text, .contacts-info .icons { font-size: 12px; }
+	.contacts-form { padding: 16px 32px; min-width: 50vw; }
+	.contacts-form .half { flex-direction: column; align-items: center; width: 100%; }
+	.contacts-form span, .contacts-form button { font-size: 16px; }
+	.contacts-form input, .contacts-form input::placeholder { font-size: 12px; }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/591a266d0e.js" crossorigin="anonymous"></script>
+	{% block style %}{% endblock %}
+	{% block title %}{% endblock %}
+</head>
+<body>
+	<header>
+		<div class="topbar">
+			{% if auth %}
+			<div id="sidebar-toggle" class="active" onclick="toggle_sidebar()">
+				<i class="fa-solid fa-bars"></i>
+			</div>
+			{% else %}
+			<div id="invi-toggle">
+				<i class="fa-solid fa-bars"></i>
+			</div>
+			{% endif %}
+
+			{% if not home %}
+			<a class="title" href="{{ url_for('home') }}">Home</a>
+			{% else %}
+				{% if not hoth %}
+				<a class="title" href="{{ url_for('home') }}">Inventory MS</a>
+				{% else %}
+				<a class="title" href="{{ url_for('dash') }}">Dash</a>
+				{% endif %}
+			{% endif %}
+			
+			{% if auth or hoth %}
+			<a class="nav" href="#">LOGOUT</a>
+			{% else %}
+			<a class="nav" href="#" id="open-login">LOGIN</a>
+			{% endif %}
+		</div>
+
+		<dialog class="popup-login" data-keyboard="false">
+			<div class="close-button"><i class="fa-solid fa-xmark"></i></div>
+			<span>LOGIN</span>
+
+			<form action="#" class="login-form" method="POST">
+				<input name="username" placeholder="Username" type="text" required>
+				<input name="password" placeholder="Password" type="password" required>
+				<button type="submit">Login</button>
+			</form>
+		</dialog>
+
+		{% if auth %}
+		<div id="sidebar" class="active">
+			<div class="category">
+				<span>Inventory</span>
+				<a class="menu-item" href="{{ url_for('home') }}">new product</a>
+				<a class="menu-item" href="#">product list</a>
+			</div>
+
+			<div class="category">
+				<span>Purchasing</span>
+				<a class="menu-item" href="#">new purchase order</a>
+				<a class="menu-item" href="#">purchase order list</a>
+			</div>
+
+			<div class="category">
+				<span>Sales</span>
+				<a class="menu-item" href="#">new sales order</a>
+				<a class="menu-item" href="#">sales order list</a>
+			</div>
+		</div>
+		{% else %}
+		{% endif %}
+	</header>
+
+	<div id="hero">{% block hero %}{% endblock %}</div>
+	<main id="main">{% block main %}{% endblock %}</main>
+	<footer id="footer"><span>FOOTER</span></footer>
+	
+	<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+</body>
+</html>

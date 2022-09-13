@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block style %}<link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">{% endblock %}
+{% block title %}<title>I'm sa home</title>{% endblock %}
+
+{% block hero %}
+<div class="section-one">
+	<div class="hero">
+		<span class="one">Track your products from one end of your supply chain to another.</span>
+		<span class="two">Make certain of what you have, where it is, and how to manage it.</span>	
+	</div>
+	
+	<div class="villain">
+		<button>Get Started</button>
+		<div class="duck"></div>
+	</div>
+</div>
+
+<div class="section-two">
+	<div class="features">
+		<i class="fa-solid fa-hand-sparkles fa-6x"></i>
+		<span>Convenient</span>
+		<p>An intuitive interface that does not necessitate advanced training, support, or documentation.</p>
+	</div>
+
+	<div class="features">
+		<i class="fa-solid fa-shield-halved fa-6x"></i>
+		<span>Reliable</span>
+		<p>A dependable, secure database that gives up-to-date information in real time.</p>
+	</div>
+
+	<div class="features">
+		<i class="fa-solid fa-wand-sparkles fa-6x"></i>
+		<span>Performance</span>
+		<p>Performance that enables fast, actionable inventory monitoring and control.</p>
+	</div>
+</div>
+
+<div class="section-three">
+	<div class="contacts-info">
+		<span class="title">Contact Us</span>
+		<span class="address">143 Porridge Street, San Mateo</span>
+		<span class="text">Swing by for a cup of coffee, or whatever.</span>
+
+		<div class="icons">
+			<i class="fa-solid fa-location-dot"></i>
+			<span class="cl-type">Rizal, PH</span>
+		</div>
+
+		<div class="icons">
+			<i class="fa-solid fa-phone"></i>
+			<span class="cl-type">+63 998-123-7654</span>
+		</div>
+
+		<div class="icons">
+			<i class="fa-solid fa-envelope"></i>
+			<span class="cl-type">contact@inventoryms.store</span>
+		</div>
+	</div>
+
+	<div class="contacts-form">
+		<span>Please input the following:</span>
+		<form>
+			<div class="half">
+				<input name="name" placeholder="Name" type="text" required>
+				<input name="email" placeholder="Email" type="text" required>
+			</div>
+
+			<input name="message" placeholder="Message" type="text" required>
+			<button type="submit">Send</button>
+		</form>
+	</div>
+</div>
+{% endblock %}
