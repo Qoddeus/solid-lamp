@@ -14,51 +14,37 @@
 	<table class="stocks-table">
 		<tr>
 			<th title="Product Name">Product</th>
-			<th title="Units Sold">Units Sold</th>
-			<th title="On Hand">On Hand</th>
-			<th title="To Come">To Come</th>
+			<th title="Units Sold">Units Sold</th> <!-- sales_orders["so_qty"] -->
+			<th title="On Hand">On Hand</th> <!-- products["pro_quantity"] -->
+			<th title="To Come">To Come</th> <!-- purhcase_orders["po_qty"] -->
 		</tr>
 
 		<tr>
-			<td>Under Armour Curry Flow 8</td>
-			<td>300 pcs</td>
-			<td>30 pcs</td>
+			<td>NMD_R1 PRIMEBLUE SHOES</td>
 			<td>0 pcs</td>
+			<td>225 pcs</td>
+			<td>25 pcs</td>
 		</tr>
 
 		<tr>
-			<td>Nike Jordan XXXVI Low Luka PF</td>
-			<td>77 pcs</td>
+			<td>ULTRABOOST 22 SHOES</td>
+			<td>10 pcs</td>
+			<td>340 pcs</td>
+			<td>40 pcs</td>
+		</tr>
+
+		<tr>
+			<td>CONTINENTAL 80 SHOES</td>
+			<td>25 pcs</td>
+			<td>600 pcs</td>
+			<td>50 pcs</td>
+		</tr>
+
+		<tr>
+			<td>ULTRA 4DFWD SHOES</td>
+			<td>15 pcs</td>
+			<td>460 pcs</td>
 			<td>0 pcs</td>
-			<td>77 pcs</td>
-		</tr>
-
-		<tr>
-			<td>New Balance Conversations Amongst Us Kawhi Sig 2</th>
-			<td>2 pcs</td>
-			<td>2 pcs</td>
-			<td>2 pcs</td>
-		</tr>
-
-		<tr>
-			<td>Under Armour Curry Flow 8</td>
-			<td>300 pcs</td>
-			<td>30 pcs</td>
-			<td>0 pcs</td>
-		</tr>
-
-		<tr>
-			<td>Nike Jordan XXXVI Low Luka PF</td>
-			<td>77 pcs</td>
-			<td>0 pcs</td>
-			<td>77 pcs</td>
-		</tr>
-
-		<tr>
-			<td>New Balance Conversations Amongst Us Kawhi Sig 2</th>
-			<td>2 pcs</td>
-			<td>2 pcs</td>
-			<td>2 pcs</td>
 		</tr>
 	</table>
 </div>
@@ -67,80 +53,28 @@
 	<span class="the-titles">Purchase Order Details<i class="fa-solid fa-circle-info"></i></span>
 	<table class="po-details-table">
 		<tr>
-			<th title="Order ID">ID</th>
-			<th title="SKU">SKU</th>
+			<th title="Order Number">Order #</th>
 			<th title="Item Name">Item Name</th>
-			<th title="Quantity">QTY</th>
+			<th title="Quantity">Quantity</th>
 			<th title="Vendor Name">Vendor</th>
-			<th title="Order Date">ORD Date</th>
-			<th title="Expected Date">EXP Date</th>
+			<th title="Order Date">Order Date</th>
 		</tr>
 
+		{% for porder in porders %}
 		<tr>
-			<td>13</td>
-			<td>UASC3008</td>
-			<td>Under Armour Curry Flow 8</td>
-			<td>10 pcs</td>
-			<td>Under Armour</td>
-			<td>10/30/2022</td>
-			<td>12/25/2022</td>
+			<td>{{ porder["po_ordnum"] }}</td>
+			<td>{{ porder["po_product"] }}</td>
+			<td>{{ porder["po_qty"] }} pcs</td>
+			<td>{{ porder["po_vendor"] }}</td>
+			<td>{{ porder["po_orddate"] }}</td>
 		</tr>
-
-		<tr>
-			<td>18</td>
-			<td>NJLD7736</td>
-			<td>Nike Jordan XXXVI Low Luka PF</td>
-			<td>77 pcs</td>
-			<td>Nike</td>
-			<td>11/12/2022</td>
-			<td>1/5/2023</td>
-		</tr>
-
-		<tr>
-			<td>13</td>
-			<td>UASC3008</td>
-			<td>Under Armour Curry Flow 8</td>
-			<td>10 pcs</td>
-			<td>Under Armour</td>
-			<td>10/30/2022</td>
-			<td>12/25/2022</td>
-		</tr>
-		
-		<tr>
-			<td>18</td>
-			<td>NJLD7736</td>
-			<td>Nike Jordan XXXVI Low Luka PF</td>
-			<td>77 pcs</td>
-			<td>Nike</td>
-			<td>11/12/2022</td>
-			<td>1/5/2023</td>
-		</tr>
-
-		<tr>
-			<td>13</td>
-			<td>UASC3008</td>
-			<td>Under Armour Curry Flow 8</td>
-			<td>10 pcs</td>
-			<td>Under Armour</td>
-			<td>10/30/2022</td>
-			<td>12/25/2022</td>
-		</tr>
-		
-		<tr>
-			<td>18</td>
-			<td>NJLD7736</td>
-			<td>Nike Jordan XXXVI Low Luka PF</td>
-			<td>77 pcs</td>
-			<td>Nike</td>
-			<td>11/12/2022</td>
-			<td>1/5/2023</td>
-		</tr>
+		{% endfor %}
 	</table>
 </div>
 
 <div class="top-sellers">
 	<span class="the-titles">Top Selling Items<i class="fa-solid fa-award"></i></span>
-	<canvas id="topsell-chart" height="1" width="5"></canvas>
+	<canvas id="topsell-chart" height="250" width="1000"></canvas>
 </div>
 
 <!-- CHART https://www.chartjs.org/docs/latest/charts/bar.html -->
@@ -149,36 +83,20 @@
 	const top_selling = new Chart(ctx, {
 		type: "bar",
 		data: {
-			labels: [
-				"Under Armour Curry Flow 8",
-				"Nike Jordan XXXVI Low Luka PF",
-				"New Balance Conversations Amongst Us Kawhi Sig",
-				"Green"
-			],
+			labels: ["ULTRABOOST 22 SHOES", "CONTINENTAL 80 SHOES", "ULTRA 4DFWD SHOES"],
 			datasets: [{
 				label: "TOP SELLING ITEMS",
-				data: [300, 777, 254, 123],
-				backgroundColor: [
-					"rgba(96 108 56/.5)",
-					"rgba(40 54 24/.5)",
-					"rgba(221 161 94/.5)",
-					"rgba(188 108 37/.5)"
-				],
-				borderColor: [
-					"rgba(96 108 56/1)",
-					"rgba(40 54 24/1)",
-					"rgba(221 161 94/1)",
-					"rgba(188 108 37/1)"
-				],
+				data: [10, 25, 15],
+				backgroundColor: ["rgba(96 108 56/.5)", "rgba(40 54 24/.5)", "rgba(221 161 94/.5)"],
+				borderColor: ["rgba(96 108 56/1)", "rgba(40 54 24/1)", "rgba(221 161 94/1)"],
 				borderWidth: 2
 			}]
 		},
 		options: {
 			indexAxis: "y",
+			// responsive: false,
 			scales: {
-				y: {
-					beginAtZero: true
-				}
+				y: { beginAtZero: true }
 			}
 		}
 	});

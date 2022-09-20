@@ -1,11 +1,16 @@
-* { box-sizing: border-box; font-family: "Source Code Pro Regular"; margin: 0; padding: 0; text-decoration: none; }
+* {
+	box-sizing: border-box;
+	font-family: "Source Code Pro Regular";
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	transition: .2s;
+}
+
 html { background-color: #fff; }
 header { display: flex; flex-direction: column; }
-hr {
-	align-self: center;
-	border: 1px solid rgba(0 0 0/.4);
-	width: 80%;
-}
+
+hr { align-self: center; border: 1px solid rgba(0 0 0/.4); width: 80%; }
 
 /* TOPBAR SECTION <> TOPBAR SECTION <> TOPBAR SECTION <> TOPBAR SECTION <> TOPBAR SECTION <> TOPBAR SECTION */
 .topbar {

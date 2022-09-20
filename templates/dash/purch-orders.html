@@ -124,9 +124,11 @@
 
 <div class="po-list">
 	<span class="the-titles">Purchase Order List</span>
+	<a class="refresh" href="{{ url_for('po_list') }}"><i class="fa-solid fa-rotate-right"></i></a>
+
 	<table class="po-table">
 		<tr>
-			<th>Order Number</th>
+			<th>Order #</th>
 			<th>Vendor</th>
 			<th>Order Date</th>
 			<th>Location</th>
@@ -134,14 +136,16 @@
 			<th>Total</th>
 		</tr>
 
+		{% for purch_order in purch_orders %}
 		<tr>
-			<td>PO-001</td>
-			<td>Adidas</td>
-			<td>11/25/2022</td>
-			<td>Warehouse1</td>
-			<td>Taguig, Metro Manila</td>
-			<td>₱120,400</td>
+			<td class="ordnum">{{ purch_order["po_ordnum"] }}</td>
+			<td>{{ purch_order["po_vendor"] }}</td>
+			<td>{{ purch_order["po_orddate"] }}</td>
+			<td>{{ purch_order["po_location"] }}</td>
+			<td>{{ purch_order["po_venadd"] }}</td>
+			<td>₱{{ purch_order["po_total"] }}</td>
 		</tr>
+		{% endfor %}
 	</table>
 </div>
 

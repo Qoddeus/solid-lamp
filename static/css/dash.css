@@ -94,18 +94,16 @@ input { border: none; border-bottom: 2px solid #606c38; font-size: 16px; padding
 #greetings { font-size: 24px; margin: 12vh 32px 8vh 32px; }
 #greetings .greet-user { color: #bc6c25; font-weight: bold; }
 
-.stocks-table th:nth-child(1) { width: 50%; }
+.stocks-table th:nth-child(1) { width: 40%; }
 .stocks-table th:nth-child(2) { width: 20%; }
-.stocks-table th:nth-child(3) { width: 15%; }
-.stocks-table th:nth-child(4) { width: 15%; }
+.stocks-table th:nth-child(3) { width: 20%; }
+.stocks-table th:nth-child(4) { width: 20%; }
 
-.po-details-table th:nth-child(1) { width: 5%; }
-.po-details-table th:nth-child(2) { width: 10%; }
-.po-details-table th:nth-child(3) { width: 30%; }
-.po-details-table th:nth-child(4) { width: 10%; }
+.po-details-table th:nth-child(1) { width: 15%; }
+.po-details-table th:nth-child(2) { width: 25%; }
+.po-details-table th:nth-child(3) { width: 10%; }
+.po-details-table th:nth-child(4) { width: 35%; }
 .po-details-table th:nth-child(5) { width: 15%; }
-.po-details-table th:nth-child(6) { width: 15%; }
-.po-details-table th:nth-child(7) { width: 15%; }
 
 /* INVENTORY <> INVENTORY <> INVENTORY <> INVENTORY <> INVENTORY <> INVENTORY <> INVENTORY <> INVENTORY <> INVENTORY */
 .product-item { align-items: center; display: flex; flex-direction: row; text-transform: uppercase; }
@@ -148,12 +146,12 @@ input { border: none; border-bottom: 2px solid #606c38; font-size: 16px; padding
 .add-product .bot-row textarea { border: 1px solid #606c38; font-size: 16px; padding: 8px 16px; resize: none; }
 
 /* PURCHASES and SALES <> PURCHASES and SALES <> PURCHASES and SALES <> PURCHASES and SALES <> PURCHASES and SALES <> */
-.po-table th:nth-child(1), .so-table th:nth-child(1) { width: 15%; }
-.po-table th:nth-child(2), .so-table th:nth-child(2) { width: 15%; }
-.po-table th:nth-child(3), .so-table th:nth-child(3) { width: 15%; }
-.po-table th:nth-child(4), .so-table th:nth-child(4) { width: 20%; }
-.po-table th:nth-child(5), .so-table th:nth-child(5) { width: 20%; }
-.po-table th:nth-child(6), .so-table th:nth-child(6) { width: 15%; }
+.po-table th:nth-child(1), .so-table th:nth-child(1) { width: 10%; }
+.po-table th:nth-child(2), .so-table th:nth-child(2) { width: 17%; }
+.po-table th:nth-child(3), .so-table th:nth-child(3) { width: 12%; }
+.po-table th:nth-child(4), .so-table th:nth-child(4) { width: 18%; }
+.po-table th:nth-child(5), .so-table th:nth-child(5) { width: 30%; }
+.po-table th:nth-child(6), .so-table th:nth-child(6) { width: 13%; }
 
 .po-top-row, .so-top-row {
 	background-color: #606c38;
@@ -216,6 +214,8 @@ input { border: none; border-bottom: 2px solid #606c38; font-size: 16px; padding
 
 .po-col #location, .po-col #location::placeholder,
 .so-col #location, .so-col #location::placeholder { text-align: center; }
+
+.ordnum { text-transform: uppercase; }
 
 /* VENDORS and CUSTOMERS <> VENDORS and CUSTOMERS <> VENDORS and CUSTOMERS <> VENDORS and CUSTOMERS */
 .vendor-form, .customer-form { margin: 32px 16px; transition: all .2s ease; }

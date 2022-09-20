@@ -87,8 +87,12 @@ def logout():
 
 @app.route("/dash", methods=["GET", "POST"])
 def dash():
-	# put here database to collect data for lists
-	return render_template("dash.html")
+	cur = sql.connection.cursor(MySQLdb.cursors.DictCursor)
+	cur.execute("SELECT * FROM purchase_orders")
+	porders = cur.fetchall()
+	cur.close
+	
+	return render_template("dash.html", porders=porders)
 
 @app.route("/dash/inventory", methods=["GET", "POST"])
 def product_list():
@@ -265,18 +269,12 @@ def po_list():
 		else:
 			cur = sql.connection.cursor()
 			cur.execute("INSERT INTO purchase_orders(\
-				po_ordnum, po_orddate, po_vendor, po_phone, po_email, po_venadd, po_location)\
-				VALUES (%s, %s, %s, %s, %s, %s, %s)",
-				(number, date, vendor, phone, email, venadd, location)
+				po_ordnum, po_orddate, po_vendor, po_phone, po_email, po_venadd, po_location,\
+				po_product, po_qty, po_unprice, po_total)\
+				VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+				(number, date, vendor, phone, email, venadd, location, product, qty, unprice, total)
 			)
 			sql.connection.commit()
-
-			# cur = sql.connection.cursor()
-			# cur.execute("INSERT INTO po_products(\
-			# 	po_ordnum, po_product, po_qty, po_unprice, po_total",
-			# 	(number, product, qty, unprice, total)
-			# )
-			# sql.connection.commit()
 
 			flash("New purchase order has been added!", "info")
 			return render_template(
@@ -320,8 +318,8 @@ def so_list():
 		customer = request.form["customer"]
 		phone = request.form["phone"]
 		email = request.form["email"]
-		billadd = request.form["billadd"]
 		location = request.form["location"]
+		shipadd = request.form["shipadd"]
 
 		product = request.form["so-product"]
 		qty = request.form["so-qty"]
@@ -348,16 +346,10 @@ def so_list():
 		else:
 			cur = sql.connection.cursor()
 			cur.execute("INSERT INTO sales_orders(\
-				so_ordnum, so_orddate, so_customer, so_phone, so_email, so_billadd, so_location)\
-				VALUES (%s, %s, %s, %s, %s, %s, %s)",
-				(number, date, customer, phone, email, billadd, location)
-			)
-			sql.connection.commit()
-
-			cur = sql.connection.cursor()
-			cur.execute("INSERT INTO so_products(\
-				so_ordnum, so_product, so_qty, so_unprice, so_total",
-				(number, product, qty, unprice, total)
+				so_ordnum, so_orddate, so_customer, so_phone, so_email, so_shipadd, so_location,\
+				so_product, so_qty, so_unprice, so_total)\
+				VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+				(number, date, customer, phone, email, shipadd, location, product, qty, unprice, total)
 			)
 			sql.connection.commit()
 

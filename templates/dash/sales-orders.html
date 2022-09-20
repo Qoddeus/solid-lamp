@@ -48,10 +48,10 @@
 
 			<div class="so-mid-row double">
 				<div class="so-col">
-					<label for="billadd">Customer Address</label>
-					<select id="billadd" name="billadd">
+					<label for="shipadd">Customer Address</label>
+					<select id="shipadd" name="shipadd">
 						{% for so_customer in so_customers %}
-						<option value="{{ so_customer['cus_billadd'] }}">[{{ so_customer["cus_id"] }}] {{ so_customer["cus_shipadd"] }}</option>
+						<option value="{{ so_customer['cus_shipadd'] }}">[{{ so_customer["cus_id"] }}] {{ so_customer["cus_shipadd"] }}</option>
 						{% endfor %}
 					</select>
 				</div>
@@ -87,6 +87,8 @@
 						id="so-qty"
 						maxlength="11"
 						name="so-qty"
+						onclick="calc_tot()"
+						onkeyup="calc_tot()"
 						type="number"
 						required
 					>
@@ -116,9 +118,11 @@
 
 <div class="so-list">
 	<span class="the-titles">Sales Order List</span>
+	<a class="refresh" href="{{ url_for('so_list') }}"><i class="fa-solid fa-rotate-right"></i></a>
+
 	<table class="so-table">
 		<tr>
-			<th>Order Number</th>
+			<th>Order #</th>
 			<th>Customer</th>
 			<th>Order Date</th>
 			<th>Location</th>
@@ -126,14 +130,24 @@
 			<th>Total</th>
 		</tr>
 
+		{% for sales_order in sales_orders %}
 		<tr>
-			<td>SO-001</td>
-			<td>Customer1</td>
-			<td>10/12/2022</td>
-			<td>Warehouse1</td>
-			<td>Pasig, Metro Manila</td>
-			<td>₱35,620</td>
+			<td class="ordnum">{{ sales_order["so_ordnum"] }}</td>
+			<td>{{ sales_order["so_customer"] }}</td>
+			<td>{{ sales_order["so_orddate"] }}</td>
+			<td>{{ sales_order["so_location"] }}</td>
+			<td>{{ sales_order["so_shipadd"] }}</td>
+			<td>₱{{ sales_order["so_total"] }}</td>
 		</tr>
+		{% endfor %}
 	</table>
 </div>
+
+<script>
+	calc_tot = function() {
+		var qty = document.getElementById("so-qty").value;
+		var pri = document.getElementById("so-unprice").value
+		document.getElementById("so-total").value = parseFloat(qty) * parseFloat(pri);
+	}
+</script>
 {% endblock %}
