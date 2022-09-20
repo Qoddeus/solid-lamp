@@ -1,0 +1,61 @@
+[
+{"type":"header","version":"5.2.0","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"cs301_project_invsys"},
+{"type":"table","name":"admin","database":"cs301_project_invsys","data":
+[
+{"adm_id":"1","adm_username":"im_thady","adm_password":"$2b$12$5D0rewNI8TS8VmaQA3QiCuRTIpVgFfak1YdP2JzdpZEIqYB\/y.5ea"},
+{"adm_id":"2","adm_username":"super_admin","adm_password":"$2b$12$hOvNj7KwMRAH7RhJYdH0uejs715EMlfqc6zXhMsErTWhV4lpZv2Ga"},
+{"adm_id":"3","adm_username":"admin","adm_password":"$2b$12$xpEGeN\/uJt31n4zIMrQOuequm5U7ml3OqJRw5G7wovbB1V7FAn0Qq"},
+{"adm_id":"4","adm_username":"super_thady","adm_password":"$2b$12$Z4ET\/2TOSRsrEgNBsHfSNeWHea\/NN1P2\/94F2ajRHIjEft.x.IMR2"},
+{"adm_id":"5","adm_username":"test","adm_password":"$2b$12$rjno32c4xwhlXu45v6Aiou.WoN0IN8wgciWrKYYvXaUoEiFqNftqy"}
+]
+}
+,{"type":"table","name":"customers","database":"cs301_project_invsys","data":
+[
+{"cus_id":"1","cus_name":"Turcotte-Littel LLC","cus_phone":"881-559-659","cus_email":"krenner@gmail.com","cus_website":"wolfschmitt.com","cus_billadd":"Kellie Renner","cus_shipadd":"32\/58 Carter View Apt. 357, Lal-lo 4325 Samar"},
+{"cus_id":"2","cus_name":"Runolfsson Inc PLC","cus_phone":"220-226-077","cus_email":"price@botsford.com","cus_website":"runolfsson.com","cus_billadd":"Teresa Price","cus_shipadd":"24A\/88 Spinka Path, Macrohon 0750 Bulacan"},
+{"cus_id":"3","cus_name":"Boyle Group Group","cus_phone":"710-256-346","cus_email":"theowis@gmail.com","cus_website":"boylegg.biz","cus_billadd":"Theodore Wisozk","cus_shipadd":"32A\/51 Heaney Plain, Poblacion, Angeles 2168 Negros Occidental"},
+{"cus_id":"4","cus_name":"Rath and Sons Inc","cus_phone":"023-826-881","cus_email":"cam.mar@medhurst.com","cus_website":"Ras-inc.biz","cus_billadd":"Camryn Marquardt","cus_shipadd":"17\/68 Boyle Square Suite 798, Malapatan 6456 Bataan"}
+]
+}
+,{"type":"table","name":"products","database":"cs301_project_invsys","data":
+[
+{"pro_id":"1","pro_image":"https:\/\/i.ibb.co\/0qX5T9g\/AMOR0001.webp","pro_name":"NMD_R1 PRIMEBLUE SHOES","sku":"AMOR0001","pro_barcode":"BC-0004","pro_category":"Men, Originals","pro_description":"Core Black \/ Core Black \/ Gum","pro_price":"8000","pro_quantity":"225"},
+{"pro_id":"2","pro_image":"https:\/\/i.ibb.co\/tP5jB3b\/AMRU0022.webp","pro_name":"ULTRABOOST 22 SHOES","sku":"AMRU0022","pro_barcode":"BC-0002","pro_category":"Men, Running","pro_description":"Core Black \/ Core Black \/ Core Black","pro_price":"10000","pro_quantity":"340"},
+{"pro_id":"3","pro_image":"https:\/\/i.ibb.co\/PcMC9Q9\/AOCO0080.webp","pro_name":"CONTINENTAL 80 SHOES","sku":"AOCO0080","pro_barcode":"BC-0001","pro_category":"Originals","pro_description":"Cloud White \/ Scarlet \/ Collegiate Navy","pro_price":"5300","pro_quantity":"600"},
+{"pro_id":"4","pro_image":"https:\/\/i.ibb.co\/r40nTHg\/ARUD0004.webp","pro_name":"ULTRA 4DFWD SHOES","sku":"ARUD0004","pro_barcode":"BC-0003","pro_category":"Running","pro_description":"Core Black \/ Core Black \/ Carbon","pro_price":"14000","pro_quantity":"460"}
+]
+}
+,{"type":"table","name":"purchase_orders","database":"cs301_project_invsys","data":
+[
+{"po_ordnum":"PO-0001","po_vendor":"West, Rempel and Bode Ltd","po_phone":"856-887-758","po_email":"cordie29@mueller.info","po_venadd":"30 Sporer Mission Suite 567, Poblacion, Iriga 4875 Basilan","po_location":"Warehouse One","po_orddate":"2022-09-20","po_product":"CONTINENTAL 80 SHOES","po_qty":"50","po_unprice":"5300","po_total":"265000"},
+{"po_ordnum":"PO-0002","po_vendor":"Franecki Inc LLC","po_phone":"522-302-719","po_email":"jackie14@schneider.org","po_venadd":"53A\/78 Blick Springs, Poblacion, Bago 2652 Iloilo","po_location":"Warehouse One","po_orddate":"2022-09-20","po_product":"NMD_R1 PRIMEBLUE SHOES","po_qty":"25","po_unprice":"8000","po_total":"200000"},
+{"po_ordnum":"PO-0003","po_vendor":"Bailey, Welch and Goodwin Inc","po_phone":"052-752-472","po_email":"isaccarroll@waters.biz","po_venadd":"24\/13 Torp Creek, Poblacion, Santa Rosa 7758 Siquijor","po_location":"Warehouse Two","po_orddate":"2022-09-20","po_product":"ULTRABOOST 22 SHOES","po_qty":"40","po_unprice":"10000","po_total":"400000"}
+]
+}
+,{"type":"table","name":"sales_orders","database":"cs301_project_invsys","data":
+[
+{"so_ordnum":"SO-0001","so_customer":"Rath and Sons Inc","so_phone":"023-826-881","so_email":"cam.mar@medhurst.com","so_shipadd":"17\/68 Boyle Square Suite 798, Malapatan 6456 Bataan","so_location":"Warehouse One","so_orddate":"2022-09-20","so_product":"ULTRABOOST 22 SHOES","so_qty":"10","so_unprice":"10000","so_total":"100000"},
+{"so_ordnum":"SO-0002","so_customer":"Boyle Group Group","so_phone":"710-256-346","so_email":"theowis@gmail.com","so_shipadd":"32A\/51 Heaney Plain, Poblacion, Angeles 2168 Negros Occidental","so_location":"Warehouse Two","so_orddate":"2022-09-20","so_product":"CONTINENTAL 80 SHOES","so_qty":"25","so_unprice":"5300","so_total":"132500"},
+{"so_ordnum":"SO-0003","so_customer":"Turcotte-Littel LLC","so_phone":"881-559-659","so_email":"krenner@gmail.com","so_shipadd":"32\/58 Carter View Apt. 357, Lal-lo 4325 Samar","so_location":"Warehouse One","so_orddate":"2022-09-20","so_product":"ULTRA 4DFWD SHOES","so_qty":"15","so_unprice":"14000","so_total":"210000"}
+]
+}
+,{"type":"table","name":"users","database":"cs301_project_invsys","data":
+[
+
+]
+}
+,{"type":"table","name":"vendors","database":"cs301_project_invsys","data":
+[
+{"ven_id":"1","ven_name":"West, Rempel and Bode Ltd","ven_phone":"856-887-758","ven_email":"cordie29@mueller.info","ven_website":"prosacco.net","ven_address":"30 Sporer Mission Suite 567, Poblacion, Iriga 4875 Basilan","ven_billcon":"Cordie Rempel"},
+{"ven_id":"2","ven_name":"Bailey, Welch and Goodwin Inc","ven_phone":"052-752-472","ven_email":"isaccarroll@waters.biz","ven_website":"predovic.net","ven_address":"24\/13 Torp Creek, Poblacion, Santa Rosa 7758 Siquijor","ven_billcon":"Isac Carroll"},
+{"ven_id":"3","ven_name":"Bergnaum-Schultz PLC","ven_phone":"129-325-902","ven_email":"cstreich@daniel.info","ven_website":"kerluke.info","ven_address":"95\/90 McCullough River, Poblacion, Calapan 6900 Ilocos Norte","ven_billcon":"Clint Streich"},
+{"ven_id":"4","ven_name":"Franecki Inc LLC","ven_phone":"522-302-719","ven_email":"jackie14@schneider.org","ven_website":"osinski.com","ven_address":"53A\/78 Blick Springs, Poblacion, Bago 2652 Iloilo","ven_billcon":"Jackie Ebert"}
+]
+}
+,{"type":"table","name":"ven_products","database":"cs301_project_invsys","data":
+[
+
+]
+}
+]

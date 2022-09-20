@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.0
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Sep 20, 2022 at 08:55 PM
+- Server version: 10.4.24-MariaDB
+- PHP Version: 8.1.6
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="cs301_project_invsys" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="admin">
+                CREATE TABLE `admin` (
+                  `adm_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `adm_username` varchar(20) NOT NULL,
+                  `adm_password` varchar(128) NOT NULL,
+                  PRIMARY KEY (`adm_id`),
+                  UNIQUE KEY `adm_username` (`adm_username`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="customers">
+                CREATE TABLE `customers` (
+                  `cus_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `cus_name` varchar(50) NOT NULL,
+                  `cus_phone` varchar(11) NOT NULL,
+                  `cus_email` varchar(320) NOT NULL,
+                  `cus_website` varchar(320) NOT NULL,
+                  `cus_billadd` varchar(256) NOT NULL,
+                  `cus_shipadd` varchar(256) NOT NULL,
+                  PRIMARY KEY (`cus_id`),
+                  UNIQUE KEY `cus_email` (`cus_email`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="products">
+                CREATE TABLE `products` (
+                  `pro_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `pro_image` varchar(256) NOT NULL,
+                  `pro_name` varchar(64) NOT NULL,
+                  `sku` varchar(15) NOT NULL,
+                  `pro_barcode` varchar(15) NOT NULL,
+                  `pro_category` varchar(64) NOT NULL,
+                  `pro_description` varchar(256) NOT NULL,
+                  `pro_price` double NOT NULL,
+                  `pro_quantity` int(11) NOT NULL,
+                  PRIMARY KEY (`pro_id`),
+                  UNIQUE KEY `sku` (`sku`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="purchase_orders">
+                CREATE TABLE `purchase_orders` (
+                  `po_ordnum` varchar(15) NOT NULL,
+                  `po_vendor` varchar(50) NOT NULL,
+                  `po_phone` varchar(11) NOT NULL,
+                  `po_email` varchar(320) NOT NULL,
+                  `po_venadd` varchar(256) NOT NULL,
+                  `po_location` varchar(128) NOT NULL,
+                  `po_orddate` date NOT NULL,
+                  `po_product` varchar(50) NOT NULL,
+                  `po_qty` int(11) NOT NULL,
+                  `po_unprice` float NOT NULL,
+                  `po_total` float NOT NULL,
+                  PRIMARY KEY (`po_ordnum`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="sales_orders">
+                CREATE TABLE `sales_orders` (
+                  `so_ordnum` varchar(15) NOT NULL,
+                  `so_customer` varchar(50) NOT NULL,
+                  `so_phone` varchar(11) NOT NULL,
+                  `so_email` varchar(320) NOT NULL,
+                  `so_shipadd` varchar(256) NOT NULL,
+                  `so_location` varchar(128) NOT NULL,
+                  `so_orddate` date NOT NULL,
+                  `so_product` varchar(50) NOT NULL,
+                  `so_qty` int(11) NOT NULL,
+                  `so_unprice` float NOT NULL,
+                  `so_total` float NOT NULL,
+                  PRIMARY KEY (`so_ordnum`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="users">
+                CREATE TABLE `users` (
+                  `usr_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `usr_name` varchar(50) NOT NULL,
+                  `usr_phone` int(11) NOT NULL,
+                  `usr_email` varchar(320) NOT NULL,
+                  `usr_password` varchar(128) NOT NULL,
+                  PRIMARY KEY (`usr_id`),
+                  UNIQUE KEY `usr_email` (`usr_email`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="vendors">
+                CREATE TABLE `vendors` (
+                  `ven_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `ven_name` varchar(50) NOT NULL,
+                  `ven_phone` varchar(11) NOT NULL,
+                  `ven_email` varchar(320) NOT NULL,
+                  `ven_website` varchar(320) NOT NULL,
+                  `ven_address` varchar(256) NOT NULL,
+                  `ven_billcon` varchar(256) NOT NULL,
+                  PRIMARY KEY (`ven_id`),
+                  UNIQUE KEY `ven_email` (`ven_email`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="ven_products">
+                CREATE TABLE `ven_products` (
+                  `ven_product` varchar(50) NOT NULL,
+                  `sku` varchar(15) NOT NULL,
+                  `ven_code` varchar(15) NOT NULL,
+                  `ven_price` double NOT NULL,
+                  PRIMARY KEY (`sku`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'cs301_project_invsys'
+    -->
+    <database name="cs301_project_invsys">
+        <!-- Table admin -->
+        <table name="admin">
+            <column name="adm_id">1</column>
+            <column name="adm_username">im_thady</column>
+            <column name="adm_password">$2b$12$5D0rewNI8TS8VmaQA3QiCuRTIpVgFfak1YdP2JzdpZEIqYB/y.5ea</column>
+        </table>
+        <table name="admin">
+            <column name="adm_id">2</column>
+            <column name="adm_username">super_admin</column>
+            <column name="adm_password">$2b$12$hOvNj7KwMRAH7RhJYdH0uejs715EMlfqc6zXhMsErTWhV4lpZv2Ga</column>
+        </table>
+        <table name="admin">
+            <column name="adm_id">3</column>
+            <column name="adm_username">admin</column>
+            <column name="adm_password">$2b$12$xpEGeN/uJt31n4zIMrQOuequm5U7ml3OqJRw5G7wovbB1V7FAn0Qq</column>
+        </table>
+        <table name="admin">
+            <column name="adm_id">4</column>
+            <column name="adm_username">super_thady</column>
+            <column name="adm_password">$2b$12$Z4ET/2TOSRsrEgNBsHfSNeWHea/NN1P2/94F2ajRHIjEft.x.IMR2</column>
+        </table>
+        <table name="admin">
+            <column name="adm_id">5</column>
+            <column name="adm_username">test</column>
+            <column name="adm_password">$2b$12$rjno32c4xwhlXu45v6Aiou.WoN0IN8wgciWrKYYvXaUoEiFqNftqy</column>
+        </table>
+        <!-- Table customers -->
+        <table name="customers">
+            <column name="cus_id">1</column>
+            <column name="cus_name">Turcotte-Littel LLC</column>
+            <column name="cus_phone">881-559-659</column>
+            <column name="cus_email">krenner@gmail.com</column>
+            <column name="cus_website">wolfschmitt.com</column>
+            <column name="cus_billadd">Kellie Renner</column>
+            <column name="cus_shipadd">32/58 Carter View Apt. 357, Lal-lo 4325 Samar</column>
+        </table>
+        <table name="customers">
+            <column name="cus_id">2</column>
+            <column name="cus_name">Runolfsson Inc PLC</column>
+            <column name="cus_phone">220-226-077</column>
+            <column name="cus_email">price@botsford.com</column>
+            <column name="cus_website">runolfsson.com</column>
+            <column name="cus_billadd">Teresa Price</column>
+            <column name="cus_shipadd">24A/88 Spinka Path, Macrohon 0750 Bulacan</column>
+        </table>
+        <table name="customers">
+            <column name="cus_id">3</column>
+            <column name="cus_name">Boyle Group Group</column>
+            <column name="cus_phone">710-256-346</column>
+            <column name="cus_email">theowis@gmail.com</column>
+            <column name="cus_website">boylegg.biz</column>
+            <column name="cus_billadd">Theodore Wisozk</column>
+            <column name="cus_shipadd">32A/51 Heaney Plain, Poblacion, Angeles 2168 Negros Occidental</column>
+        </table>
+        <table name="customers">
+            <column name="cus_id">4</column>
+            <column name="cus_name">Rath and Sons Inc</column>
+            <column name="cus_phone">023-826-881</column>
+            <column name="cus_email">cam.mar@medhurst.com</column>
+            <column name="cus_website">Ras-inc.biz</column>
+            <column name="cus_billadd">Camryn Marquardt</column>
+            <column name="cus_shipadd">17/68 Boyle Square Suite 798, Malapatan 6456 Bataan</column>
+        </table>
+        <!-- Table products -->
+        <table name="products">
+            <column name="pro_id">1</column>
+            <column name="pro_image">https://i.ibb.co/0qX5T9g/AMOR0001.webp</column>
+            <column name="pro_name">NMD_R1 PRIMEBLUE SHOES</column>
+            <column name="sku">AMOR0001</column>
+            <column name="pro_barcode">BC-0004</column>
+            <column name="pro_category">Men, Originals</column>
+            <column name="pro_description">Core Black / Core Black / Gum</column>
+            <column name="pro_price">8000</column>
+            <column name="pro_quantity">225</column>
+        </table>
+        <table name="products">
+            <column name="pro_id">2</column>
+            <column name="pro_image">https://i.ibb.co/tP5jB3b/AMRU0022.webp</column>
+            <column name="pro_name">ULTRABOOST 22 SHOES</column>
+            <column name="sku">AMRU0022</column>
+            <column name="pro_barcode">BC-0002</column>
+            <column name="pro_category">Men, Running</column>
+            <column name="pro_description">Core Black / Core Black / Core Black</column>
+            <column name="pro_price">10000</column>
+            <column name="pro_quantity">340</column>
+        </table>
+        <table name="products">
+            <column name="pro_id">3</column>
+            <column name="pro_image">https://i.ibb.co/PcMC9Q9/AOCO0080.webp</column>
+            <column name="pro_name">CONTINENTAL 80 SHOES</column>
+            <column name="sku">AOCO0080</column>
+            <column name="pro_barcode">BC-0001</column>
+            <column name="pro_category">Originals</column>
+            <column name="pro_description">Cloud White / Scarlet / Collegiate Navy</column>
+            <column name="pro_price">5300</column>
+            <column name="pro_quantity">600</column>
+        </table>
+        <table name="products">
+            <column name="pro_id">4</column>
+            <column name="pro_image">https://i.ibb.co/r40nTHg/ARUD0004.webp</column>
+            <column name="pro_name">ULTRA 4DFWD SHOES</column>
+            <column name="sku">ARUD0004</column>
+            <column name="pro_barcode">BC-0003</column>
+            <column name="pro_category">Running</column>
+            <column name="pro_description">Core Black / Core Black / Carbon</column>
+            <column name="pro_price">14000</column>
+            <column name="pro_quantity">460</column>
+        </table>
+        <!-- Table purchase_orders -->
+        <table name="purchase_orders">
+            <column name="po_ordnum">PO-0001</column>
+            <column name="po_vendor">West, Rempel and Bode Ltd</column>
+            <column name="po_phone">856-887-758</column>
+            <column name="po_email">cordie29@mueller.info</column>
+            <column name="po_venadd">30 Sporer Mission Suite 567, Poblacion, Iriga 4875 Basilan</column>
+            <column name="po_location">Warehouse One</column>
+            <column name="po_orddate">2022-09-20</column>
+            <column name="po_product">CONTINENTAL 80 SHOES</column>
+            <column name="po_qty">50</column>
+            <column name="po_unprice">5300</column>
+            <column name="po_total">265000</column>
+        </table>
+        <table name="purchase_orders">
+            <column name="po_ordnum">PO-0002</column>
+            <column name="po_vendor">Franecki Inc LLC</column>
+            <column name="po_phone">522-302-719</column>
+            <column name="po_email">jackie14@schneider.org</column>
+            <column name="po_venadd">53A/78 Blick Springs, Poblacion, Bago 2652 Iloilo</column>
+            <column name="po_location">Warehouse One</column>
+            <column name="po_orddate">2022-09-20</column>
+            <column name="po_product">NMD_R1 PRIMEBLUE SHOES</column>
+            <column name="po_qty">25</column>
+            <column name="po_unprice">8000</column>
+            <column name="po_total">200000</column>
+        </table>
+        <table name="purchase_orders">
+            <column name="po_ordnum">PO-0003</column>
+            <column name="po_vendor">Bailey, Welch and Goodwin Inc</column>
+            <column name="po_phone">052-752-472</column>
+            <column name="po_email">isaccarroll@waters.biz</column>
+            <column name="po_venadd">24/13 Torp Creek, Poblacion, Santa Rosa 7758 Siquijor</column>
+            <column name="po_location">Warehouse Two</column>
+            <column name="po_orddate">2022-09-20</column>
+            <column name="po_product">ULTRABOOST 22 SHOES</column>
+            <column name="po_qty">40</column>
+            <column name="po_unprice">10000</column>
+            <column name="po_total">400000</column>
+        </table>
+        <!-- Table sales_orders -->
+        <table name="sales_orders">
+            <column name="so_ordnum">SO-0001</column>
+            <column name="so_customer">Rath and Sons Inc</column>
+            <column name="so_phone">023-826-881</column>
+            <column name="so_email">cam.mar@medhurst.com</column>
+            <column name="so_shipadd">17/68 Boyle Square Suite 798, Malapatan 6456 Bataan</column>
+            <column name="so_location">Warehouse One</column>
+            <column name="so_orddate">2022-09-20</column>
+            <column name="so_product">ULTRABOOST 22 SHOES</column>
+            <column name="so_qty">10</column>
+            <column name="so_unprice">10000</column>
+            <column name="so_total">100000</column>
+        </table>
+        <table name="sales_orders">
+            <column name="so_ordnum">SO-0002</column>
+            <column name="so_customer">Boyle Group Group</column>
+            <column name="so_phone">710-256-346</column>
+            <column name="so_email">theowis@gmail.com</column>
+            <column name="so_shipadd">32A/51 Heaney Plain, Poblacion, Angeles 2168 Negros Occidental</column>
+            <column name="so_location">Warehouse Two</column>
+            <column name="so_orddate">2022-09-20</column>
+            <column name="so_product">CONTINENTAL 80 SHOES</column>
+            <column name="so_qty">25</column>
+            <column name="so_unprice">5300</column>
+            <column name="so_total">132500</column>
+        </table>
+        <table name="sales_orders">
+            <column name="so_ordnum">SO-0003</column>
+            <column name="so_customer">Turcotte-Littel LLC</column>
+            <column name="so_phone">881-559-659</column>
+            <column name="so_email">krenner@gmail.com</column>
+            <column name="so_shipadd">32/58 Carter View Apt. 357, Lal-lo 4325 Samar</column>
+            <column name="so_location">Warehouse One</column>
+            <column name="so_orddate">2022-09-20</column>
+            <column name="so_product">ULTRA 4DFWD SHOES</column>
+            <column name="so_qty">15</column>
+            <column name="so_unprice">14000</column>
+            <column name="so_total">210000</column>
+        </table>
+        <!-- Table users -->
+        <!-- Table vendors -->
+        <table name="vendors">
+            <column name="ven_id">1</column>
+            <column name="ven_name">West, Rempel and Bode Ltd</column>
+            <column name="ven_phone">856-887-758</column>
+            <column name="ven_email">cordie29@mueller.info</column>
+            <column name="ven_website">prosacco.net</column>
+            <column name="ven_address">30 Sporer Mission Suite 567, Poblacion, Iriga 4875 Basilan</column>
+            <column name="ven_billcon">Cordie Rempel</column>
+        </table>
+        <table name="vendors">
+            <column name="ven_id">2</column>
+            <column name="ven_name">Bailey, Welch and Goodwin Inc</column>
+            <column name="ven_phone">052-752-472</column>
+            <column name="ven_email">isaccarroll@waters.biz</column>
+            <column name="ven_website">predovic.net</column>
+            <column name="ven_address">24/13 Torp Creek, Poblacion, Santa Rosa 7758 Siquijor</column>
+            <column name="ven_billcon">Isac Carroll</column>
+        </table>
+        <table name="vendors">
+            <column name="ven_id">3</column>
+            <column name="ven_name">Bergnaum-Schultz PLC</column>
+            <column name="ven_phone">129-325-902</column>
+            <column name="ven_email">cstreich@daniel.info</column>
+            <column name="ven_website">kerluke.info</column>
+            <column name="ven_address">95/90 McCullough River, Poblacion, Calapan 6900 Ilocos Norte</column>
+            <column name="ven_billcon">Clint Streich</column>
+        </table>
+        <table name="vendors">
+            <column name="ven_id">4</column>
+            <column name="ven_name">Franecki Inc LLC</column>
+            <column name="ven_phone">522-302-719</column>
+            <column name="ven_email">jackie14@schneider.org</column>
+            <column name="ven_website">osinski.com</column>
+            <column name="ven_address">53A/78 Blick Springs, Poblacion, Bago 2652 Iloilo</column>
+            <column name="ven_billcon">Jackie Ebert</column>
+        </table>
+        <!-- Table ven_products -->
+    </database>
+</pma_xml_export>
