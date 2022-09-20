@@ -15,7 +15,7 @@
 .hero .two { color: #606c38; font-size: 32px; width: 50%; }
 .villain { display: flex; margin: 0 32px; }
 
-.villain button {
+.villain a {
 	background-color: #283618;
 	border: none;
 	border-radius: 5px;
@@ -26,11 +26,12 @@
 	height: 50%;
 	margin-top: 10vh;
 	padding: 8px 16px;
+	text-align: center;
 	transition: .2s;
 	width: 30%;
 }
 
-.villain button:hover { background-color: #bc6c25; }
+.villain a:hover { background-color: #bc6c25; }
 
 .villain .duck {
 	background-image: url("/static/assets/ducky-nobg.gif");
@@ -96,16 +97,19 @@
 
 .contacts-form {
 	background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 0 8px 10px 0 rgba(0 0 0/.75);
+	border-bottom: 1px solid #606c38;
 	display: flex;
 	flex-direction: column;
 	min-width: 60vw;
 	padding: 32px 64px;
-	transition: .2s;
+	transition: all .2s ease;
 }
 
-.contacts-form:hover { box-shadow: 0 4px 2px 2px rgba(0 0 0/.75); }
+.contacts-form:hover {
+	border-radius: 20px;
+	box-shadow: 0 8px 10px 0 rgba(0 0 0/.9);
+	transform: translateY(-8px);
+}
 .contacts-form form { display: flex; flex-direction: column; align-items: center; }
 .contacts-form span { color: #283618; font-size: 24px; font-weight: bold; margin-bottom: 16px; text-align: center; }
 .contacts-form .half { display: flex; flex-direction: row; transition: .2s; width: 80%; }
@@ -141,6 +145,7 @@
 	width: 100%;
 }
 
+.contacts-form button i { font-size: 16px; margin-left: 8px; }
 .contacts-form button:hover { background-color: #bc6c25; }
 
 /* RESPONSIVE SCREEN <> RESPONSIVE SCREEN <> RESPONSIVE SCREEN <> RESPONSIVE SCREEN <> RESPONSIVE SCREEN */

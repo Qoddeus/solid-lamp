@@ -5,13 +5,19 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/591a266d0e.js" crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+		integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"
+	></script>
 	{% block style %}{% endblock %}
 	{% block title %}{% endblock %}
 </head>
 <body>
 	<header>
 		<div class="topbar">
-			{% if auth %}
+			{% if session["logged_in"] and not at_home %}
 			<div id="sidebar-toggle" class="active" onclick="toggle_sidebar()">
 				<i class="fa-solid fa-bars"></i>
 			</div>
@@ -21,52 +27,66 @@
 			</div>
 			{% endif %}
 
-			{% if not home %}
+			{% if not at_home %}
 			<a class="title" href="{{ url_for('home') }}">Home</a>
 			{% else %}
-				{% if not hoth %}
+				{% if not session["logged_in"] %}
 				<a class="title" href="{{ url_for('home') }}">Inventory MS</a>
 				{% else %}
 				<a class="title" href="{{ url_for('dash') }}">Dash</a>
 				{% endif %}
 			{% endif %}
 			
-			{% if auth or hoth %}
-			<a class="nav" href="#">LOGOUT</a>
+			{% if session["logged_in"] %}
+			<a class="nav" href="{{ url_for('logout') }}">LOGOUT</a>
 			{% else %}
-			<a class="nav" href="#" id="open-login">LOGIN</a>
+			<a class="nav" href="javascript:void(0)" id="open-login">LOGIN</a>
 			{% endif %}
 		</div>
 
-		<dialog class="popup-login" data-keyboard="false">
-			<div class="close-button"><i class="fa-solid fa-xmark"></i></div>
+		<dialog class="popup-login">
+			<div class="close-login"><i class="fa-solid fa-xmark"></i></div>
 			<span>LOGIN</span>
 
-			<form action="#" class="login-form" method="POST">
-				<input name="username" placeholder="Username" type="text" required>
-				<input name="password" placeholder="Password" type="password" required>
+			<form action="/home" class="login-form" method="POST">
+				<input maxlength="20" name="username" placeholder="Username" type="text" autofocus required>
+				<input maxlength="128" name="password" placeholder="Password" type="password" required>
 				<button type="submit">Login</button>
 			</form>
 		</dialog>
 
-		{% if auth %}
+		{% if session["logged_in"] and not at_home %}
 		<div id="sidebar" class="active">
 			<div class="category">
+				<a id="overview" href="{{ url_for('dash') }}">Overview</a>
+			</div>
+
+			<div class="category">
+				{% if at_products %}
+					<a id="open-product" href="javascript:void(0)">• new product<i class="fa-solid fa-plus"></i></a>
+				{% endif %}
+				<a class="lists" href="{{ url_for('product_list') }}">products<i class="fa-solid fa-angles-right"></i></a>
 				<span>Inventory</span>
-				<a class="menu-item" href="{{ url_for('home') }}">new product</a>
-				<a class="menu-item" href="#">product list</a>
 			</div>
 
 			<div class="category">
+				<a class="lists" href="{{ url_for('vendor_list') }}">vendors<i class="fa-solid fa-angles-right"></i></a>
+				<hr>
+				{% if at_purchasing %}
+					<a id="open-product" href="javascript:void(0)">• new purchase order<i class="fa-solid fa-plus"></i></a>
+				{% endif %}
+				<a class="lists" href="{{ url_for('po_list') }}">purchase orders<i class="fa-solid fa-angles-right"></i></a>
 				<span>Purchasing</span>
-				<a class="menu-item" href="#">new purchase order</a>
-				<a class="menu-item" href="#">purchase order list</a>
 			</div>
 
 			<div class="category">
+				<a class="lists" href="{{ url_for('customer_list') }}">customers<i class="fa-solid fa-angles-right"></i></a>
+				<hr>
+				{% if at_sales %}
+					<a id="open-product" href="javascript:void(0)">• new sales order<i class="fa-solid fa-plus"></i></a>
+				{% endif %}
+				<a class="lists" href="{{ url_for('so_list') }}">sales orders<i class="fa-solid fa-angles-right"></i></a>
 				<span>Sales</span>
-				<a class="menu-item" href="#">new sales order</a>
-				<a class="menu-item" href="#">sales order list</a>
 			</div>
 		</div>
 		{% else %}
@@ -75,6 +95,17 @@
 
 	<div id="hero">{% block hero %}{% endblock %}</div>
 	<main id="main">{% block main %}{% endblock %}</main>
+
+	<div onclick="close_flash()">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for msg in messages %}
+				<span id="flash-messages">{{ msg }}</span>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	</div>
+
 	<footer id="footer"><span>FOOTER</span></footer>
 	
 	<script src="{{ url_for('static', filename='js/base.js') }}"></script>

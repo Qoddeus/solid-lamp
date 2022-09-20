@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block style %}<link href="{{ url_for('static', filename='css/dash.css') }}" rel="stylesheet">{% endblock %}
+{% block title %}<title>I'm looking for data</title>{% endblock %}
+
+{% block main %}
+<div id="greetings">
+	<span class="greetings">'tis the inventory menu</span>
+</div>
+
+<div class="add-product">
+	<div class="close-product"><i class="fa-solid fa-xmark"></i></div>
+	<form action="/dash/inventory", method="POST">
+		<div class="top-row">
+			<input maxlength="64" name="name" placeholder="Product Name" type="text" autofocus required>
+			<input maxlength="256" name="image" placeholder="Product Image (URL)" type="text">
+		</div>
+
+		<div class="mid-col">
+			<div class="mid-row">
+				<div class="col">
+					<label for="sku">SKU</label>
+					<input id="sku" maxlength="15" name="sku" type="text" required>
+				</div>
+
+				<div class="col">
+					<label for="category">Category</label>
+					<input id="category" maxlength="64" name="category" type="text" required>
+				</div>
+
+				<div class="col">
+					<label for="barcode">Barcode</label>
+					<input id="barcode" maxlength="11" name="barcode" placeholder="BC-0001" type="text" required>
+				</div>
+			</div>
+
+			<div class="mid-row double">
+				<input maxlength="11" name="quantity" placeholder="Quantity" type="number">
+				<input name="price" placeholder="Price" step="0.01" type="number">
+			</div>
+		</div>
+
+		<div class="bot-row">
+			<label for="description">Description</label>
+			<textarea cols="128" id="description" maxlength="256" name="description" rows="2"></textarea>
+		</div>
+
+		<button type="submit">Create</button>
+	</form>
+</div>
+
+<div class="product-list">
+	<span class="the-titles">Product List</span>
+	<a class="refresh" href="{{ url_for('product_list') }}"><i class="fa-solid fa-rotate-right"></i></a>
+
+	<table class="product-table">
+		<tr>
+			<th>Product</th>
+			<th>Category</th>
+			<th>Barcode</th>
+			<th>Quantity</th>
+			<th>Price</th>
+		</tr>
+
+		{% for product in products %}
+		<tr>
+			<td class="product-item">
+				<img src="{{ product['pro_image'] }}">
+				<div>
+					<span class="name">{{ product["pro_name"] }}</span>
+					<span class="sku">{{ product["sku"] }}</span>
+				</div>
+			</td>
+			<td class="product-category">{{ product["pro_category"] }}</td>
+			<td class="product-barcode">{{ product["pro_barcode"] }}</td>
+			<td>{{ product["pro_quantity"] }} pcs</td>
+			<td>₱{{ product["pro_price"] }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/signup.css') }}" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/591a266d0e.js" crossorigin="anonymous"></script>
+	<title>I'm gonna register</title>
+</head>
+<body>
+	<div class="signup-background"></div>
+
+	<div class="signup-full">
+		<h1>Inventory MS</h1>
+
+		<div class="register">
+			<span>SIGN UP</span>
+
+			<form action="/signup" class="signup-form" method="POST">
+				<div class="input-column">
+					<label for="username">Username</label>
+					<input
+						id="username"
+						minlength="4"
+						maxlength="20"
+						name="username"
+						placeholder="4 characters minimum upto 20 characters"
+						type="text"
+						autofocus
+						required
+					>
+				</div>
+
+				<div class="input-column">
+					<label for="password">Password</label>
+					<input
+						id="password"
+						minlength="8"
+						maxlength="128"
+						name="password"
+						placeholder="8 characters minimum"
+						type="password"
+						required
+					>
+				</div>
+
+				<div class="signup-buttons">
+					<a href="{{ url_for('home') }}">Cancel</a>
+					<button type="submit">Sign up</button>
+				</div>
+			</form>
+		</div>
+
+		<small>
+			Photo by <a href="https://www.pexels.com/photo/scenic-view-of-rice-paddy-247599">Pixabay</a>
+		</small>
+	</div>
+
+	<div onclick="close_flash()">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for msg in messages %}
+					<span id="flash-messages">{{ msg }}</span>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+	</div>
+
+	<script src="{{ url_for('static', filename='js/flash.js') }}"></script>
+</body>
+</html>

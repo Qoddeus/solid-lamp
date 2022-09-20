@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block style %}<link href="{{ url_for('static', filename='css/dash.css') }}" rel="stylesheet">{% endblock %}
+{% block title %}<title>I'm looking for data</title>{% endblock %}
+
+{% block main %}
+<div id="greetings">
+	<span class="greetings">going to order goods?</span>
+</div>
+
+<div class="add-product">
+	<div class="close-product"><i class="fa-solid fa-xmark"></i></div>
+	<form action="/dash/purchasing/orders", method="POST">
+		<div class="po-top-row">
+			<input maxlength="15" name="number" placeholder="Order Number" type="text" autofocus required>
+			<input name="date" placeholder="Order Date" type="date" required>
+		</div>
+		
+		<div class="po-mid-col">
+			<div class="po-mid-row">
+				<div class="po-col">
+					<label for="vendor">Vendor</label>
+					<select id="vendor" name="vendor">
+						{% for po_vendor in po_vendors %}
+						<option value="{{ po_vendor['ven_name'] }}">[{{ po_vendor["ven_id"] }}] {{ po_vendor["ven_name"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="po-col">
+					<label for="phone">Phone</label>
+					<select id="phone" name="phone">
+						{% for po_vendor in po_vendors %}
+						<option value="{{ po_vendor['ven_phone'] }}">[{{ po_vendor["ven_id"] }}] {{ po_vendor["ven_phone"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="po-col">
+					<label for="email">Email</label>
+					<select id="email" name="email">
+						{% for po_vendor in po_vendors %}
+						<option value="{{ po_vendor['ven_email'] }}">[{{ po_vendor["ven_id"] }}] {{ po_vendor["ven_email"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+
+			<div class="po-mid-row double">
+				<div class="po-col">
+					<label for="venadd">Vendor Address</label>
+					<select id="venadd" name="venadd">
+						{% for po_vendor in po_vendors %}
+						<option value="{{ po_vendor['ven_address'] }}">
+							[{{ po_vendor["ven_id"] }}] {{ po_vendor["ven_address"] }}
+						</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="po-col">
+					<label for="location">Location</label>
+					<input
+						id="location"
+						maxlength="128"
+						name="location"
+						placeholder="where your products are stored"
+						type="text"
+						required
+					>
+				</div>
+			</div>
+		</div>
+
+		<div class="po-bot-col">
+			<div class="po-bot-row">
+				<div class="po-col">
+					<label for="po-product">Product</label>
+					<select id="po-product" name="po-product">
+						{% for po_product in po_products %}
+						<option value="{{ po_product['pro_name'] }}">
+							[{{ po_product['pro_id'] }}] {{ po_product['pro_name'] }}
+						</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="po-col">
+					<label for="po-qty">Quantity</label>
+					<input
+						id="po-qty"
+						maxlength="11"
+						name="po-qty"
+						onclick="calc_tot()"
+						onkeyup="calc_tot()"
+						type="number"
+						required
+					>
+				</div>
+			</div>
+
+			<div class="po-bot-row">
+				<div class="po-col">
+					<label for="po-unprice">Unit Price</label>
+					<select id="po-unprice" name="po-unprice">
+						{% for po_product in po_products %}
+						<option value="{{ po_product['pro_price'] }}">
+							[{{ po_product['pro_id'] }}] ₱{{ po_product['pro_price'] }}
+						</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="po-col">
+					<label for="po-total">Total&nbsp;&nbsp;&nbsp;</label>
+					<input id="po-total" name="po-total" step="0.01" type="number" readonly required>
+				</div>
+			</div>
+		</div>
+
+		<button type="submit">Create</button>
+	</form>
+</div>
+
+<div class="po-list">
+	<span class="the-titles">Purchase Order List</span>
+	<table class="po-table">
+		<tr>
+			<th>Order Number</th>
+			<th>Vendor</th>
+			<th>Order Date</th>
+			<th>Location</th>
+			<th>Vendor Address</th>
+			<th>Total</th>
+		</tr>
+
+		<tr>
+			<td>PO-001</td>
+			<td>Adidas</td>
+			<td>11/25/2022</td>
+			<td>Warehouse1</td>
+			<td>Taguig, Metro Manila</td>
+			<td>₱120,400</td>
+		</tr>
+	</table>
+</div>
+
+<script>
+	calc_tot = function() {
+		var qty = document.getElementById("po-qty").value;
+		var pri = document.getElementById("po-unprice").value
+		document.getElementById("po-total").value = parseFloat(qty) * parseFloat(pri);
+	}
+</script>
+{% endblock %}

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block style %}<link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">{% endblock %}
-{% block title %}<title>I'm sa home</title>{% endblock %}
+{% block title %}<title>I'm at home</title>{% endblock %}
 
 {% block hero %}
+
 <div class="section-one">
 	<div class="hero">
 		<span class="one">Track your products from one end of your supply chain to another.</span>
@@ -11,7 +12,11 @@
 	</div>
 	
 	<div class="villain">
-		<button>Get Started</button>
+		{% if session["logged_in"] %}
+			<a href="{{ url_for('dash') }}">Go to Dash</a>
+		{% else %}
+			<a href="{{ url_for('signup') }}">Get Started</a>
+		{% endif %}
 		<div class="duck"></div>
 	</div>
 </div>
@@ -67,8 +72,10 @@
 			</div>
 
 			<input name="message" placeholder="Message" type="text" required>
-			<button type="submit">Send</button>
+			<button type="submit">Send<i class="fa-solid fa-paper-plane"></i></button>
 		</form>
 	</div>
 </div>
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
 {% endblock %}

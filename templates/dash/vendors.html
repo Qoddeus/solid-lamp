@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block style %}<link href="{{ url_for('static', filename='css/dash.css') }}" rel="stylesheet">{% endblock %}
+{% block title %}<title>I'm looking for data</title>{% endblock %}
+
+{% block main %}
+<div id="greetings">
+	<span class="greetings">see where you buy your products</span>
+</div>
+
+<form action="/dash/purchasing/vendors" class="vendor-form" method="POST">
+	<div class="fir-row">
+		<input maxlength="50" name="name" placeholder="Vendor Name" type="text" autofocus required>
+	</div>
+
+	<div class="sec-row">
+		<div class="col">
+			<label for="billcon">Contact</label>
+			<input id="billcon" maxlength="256" name="billcon" placeholder="JANE DOE" type="text">
+
+			<label for="phone">Phone</label>
+			<input id="phone" maxlength="11" name="phone" type="phone" required>
+		</div>
+
+		<div class="col">
+			<label for="email">Email</label>
+			<input id="email" maxlength="320" name="email" type="email" required>
+
+			<label for="website">Website</label>
+			<input id="website" maxlength="320" name="website" type="text">
+		</div>
+
+		<div class="form-buttons">
+			<button type="submit">Save</button>
+		</div>
+	</div>
+
+	<div class="thi-row">
+		<input maxlength="256" name="address" placeholder="Address" type="text" required>
+	</div>
+</form>
+
+<div class="vendor-list">
+	<span class="the-titles">Vendor List</span>
+	<a class="refresh" href="{{ url_for('vendor_list') }}"><i class="fa-solid fa-rotate-right"></i></a>
+
+	<table class="vendor-table">
+		<tr>
+			<th>Name and contact</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Address</th>
+		</tr>
+
+		{% for vendor in vendors %}
+		<tr>
+			<td>
+				<span class="ven-name">{{ vendor["ven_name"] }}</span>
+				<span class="ven-tact">{{ vendor["ven_billcon"] }}</span>
+			</td>
+			<td>{{ vendor["ven_phone"] }}</td>
+			<td>{{ vendor["ven_email"] }}</td>
+			<td>{{ vendor["ven_address"] }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

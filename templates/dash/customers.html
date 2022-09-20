@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block style %}<link href="{{ url_for('static', filename='css/dash.css') }}" rel="stylesheet">{% endblock %}
+{% block title %}<title>I'm looking for data</title>{% endblock %}
+
+{% block main %}
+<div id="greetings">
+	<span class="greetings">see who you sell your products</span>
+</div>
+
+<form action="/dash/sales/customers" class="customer-form" method="POST">
+	<div class="fir-row">
+		<input maxlength="50" name="name" placeholder="Customer Name" type="text" autofocus required>
+	</div>
+
+	<div class="sec-row">
+		<div class="col">
+			<label for="billadd">Contact</label>
+			<input id="billadd" maxlength="256" name="billadd" placeholder="John Doe" type="text">
+
+			<label for="phone">Phone</label>
+			<input id="phone" maxlength="11" name="phone" type="phone" required>
+		</div>
+
+		<div class="col">
+			<label for="email">Email</label>
+			<input id="email" maxlength="320" name="email" type="email" required>
+
+			<label for="website">Website</label>
+			<input id="website" maxlength="320" name="website" type="text">
+		</div>
+
+		<div class="form-buttons">
+			<button type="submit">Save</button>
+		</div>
+	</div>
+
+	<div class="thi-row">
+		<input maxlength="256" name="shipadd" placeholder="Shipping Address" type="text" required>
+	</div>
+</form>
+
+<div class="customer-list">
+	<span class="the-titles">Customer List</span>
+	<a class="refresh" href="{{ url_for('customer_list') }}"><i class="fa-solid fa-rotate-right"></i></a>
+
+	<table class="customer-table">
+		<tr>
+			<th>Name and contact</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Address</th>
+		</tr>
+
+		{% for customer in customers %}
+		<tr>
+			<td>
+				<span class="cus-name">{{ customer["cus_name"] }}</span>
+				<span class="cus-tact">{{ customer["cus_billadd"] }}</span>
+			</td>
+			<td>{{ customer["cus_phone"] }}</td>
+			<td>{{ customer["cus_email"] }}</td>
+			<td>{{ customer["cus_shipadd"] }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}

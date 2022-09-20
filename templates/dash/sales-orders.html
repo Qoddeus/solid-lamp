@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block style %}<link href="{{ url_for('static', filename='css/dash.css') }}" rel="stylesheet">{% endblock %}
+{% block title %}<title>I'm looking for data</title>{% endblock %}
+
+{% block main %}
+<div id="greetings">
+	<span class="greetings">let's make a sale</span>
+</div>
+
+<div class="add-product">
+	<div class="close-product"><i class="fa-solid fa-xmark"></i></div>
+	<form action="/dash/sales/orders", method="POST">
+		<div class="so-top-row">
+			<input maxlength="15" name="number" placeholder="Order Number" type="text" autofocus required>
+			<input name="date" placeholder="Order Date" type="date" required>
+		</div>
+		
+		<div class="so-mid-col">
+			<div class="so-mid-row">
+				<div class="so-col">
+					<label for="customer">Customer</label>
+					<select id="customer" name="customer">
+						{% for so_customer in so_customers %}
+						<option value="{{ so_customer['cus_name'] }}">[{{ so_customer["cus_id"] }}] {{ so_customer["cus_name"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="so-col">
+					<label for="phone">Phone</label>
+					<select id="phone" name="phone">
+						{% for so_customer in so_customers %}
+						<option value="{{ so_customer['cus_phone'] }}">[{{ so_customer["cus_id"] }}] {{ so_customer["cus_phone"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="so-col">
+					<label for="email">Email</label>
+					<select id="email" name="email">
+						{% for so_customer in so_customers %}
+						<option value="{{ so_customer['cus_email'] }}">[{{ so_customer["cus_id"] }}] {{ so_customer["cus_email"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+
+			<div class="so-mid-row double">
+				<div class="so-col">
+					<label for="billadd">Customer Address</label>
+					<select id="billadd" name="billadd">
+						{% for so_customer in so_customers %}
+						<option value="{{ so_customer['cus_billadd'] }}">[{{ so_customer["cus_id"] }}] {{ so_customer["cus_shipadd"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="so-col">
+					<label for="location">Location</label>
+					<input
+						id="location"
+						maxlength="128"
+						name="location"
+						placeholder="where your products are stored"
+						type="text"
+						required
+					>
+				</div>
+			</div>
+		</div>
+
+		<div class="so-bot-col">
+			<div class="so-bot-row">
+				<div class="so-col">
+					<label for="so-product">Product</label>
+					<select id="so-product" name="so-product">
+						{% for so_product in so_products %}
+						<option value="{{ so_product['pro_name'] }}">[{{ so_product["pro_id"] }}] {{ so_product["pro_name"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+					
+				<div class="so-col">
+					<label for="so-qty">Quantity</label>
+					<input
+						id="so-qty"
+						maxlength="11"
+						name="so-qty"
+						type="number"
+						required
+					>
+				</div>
+			</div>
+
+			<div class="so-bot-row">
+				<div class="so-col">
+					<label for="so-unprice">Unit Price</label>
+					<select id="so-unprice" name="so-unprice">
+						{% for so_product in so_products %}
+						<option value="{{ so_product['pro_price'] }}">[{{ so_product["pro_id"] }}] {{ so_product["pro_price"] }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+				<div class="so-col">
+					<label for="so-total">Total&nbsp;&nbsp;&nbsp;</label>
+					<input id="so-total" name="so-total" step="0.01" type="number" readonly required>
+				</div>
+			</div>						
+		</div>
+
+		<button type="submit">Create</button>
+	</form>
+</div>
+
+<div class="so-list">
+	<span class="the-titles">Sales Order List</span>
+	<table class="so-table">
+		<tr>
+			<th>Order Number</th>
+			<th>Customer</th>
+			<th>Order Date</th>
+			<th>Location</th>
+			<th>Customer Address</th>
+			<th>Total</th>
+		</tr>
+
+		<tr>
+			<td>SO-001</td>
+			<td>Customer1</td>
+			<td>10/12/2022</td>
+			<td>Warehouse1</td>
+			<td>Pasig, Metro Manila</td>
+			<td>₱35,620</td>
+		</tr>
+	</table>
+</div>
+{% endblock %}
